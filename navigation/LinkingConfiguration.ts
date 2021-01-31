@@ -6,7 +6,7 @@ export default {
     screens: {
       Root: {
         screens: {
-          TabOne: {
+          Accueil: {
             screens: {
               TabOneScreen: 'one',
             },
@@ -14,6 +14,11 @@ export default {
           TabTwo: {
             screens: {
               TabTwoScreen: 'two',
+            },
+          },
+          Blog: {
+            screens: {
+              TabBlogScreen: 'one',
             },
           },
         },

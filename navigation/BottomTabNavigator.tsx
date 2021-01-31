@@ -7,7 +7,8 @@ import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
-import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
+import TabBlogScreen from '../screens/TabBlogScreen';
+import { BottomTabParamList, TabOneParamList, TabTwoParamList, TabBlogParamList } from '../types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -16,13 +17,20 @@ export default function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
+      initialRouteName="Accueil"
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
       <BottomTab.Screen
-        name="TabOne"
+        name="Accueil"
         component={TabOneNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="Blog"
+        component={TabBlogNavigator}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-man" color={color} />,
         }}
       />
       <BottomTab.Screen
@@ -55,6 +63,19 @@ function TabOneNavigator() {
         options={{ headerTitle: 'Tab One Title' }}
       />
     </TabOneStack.Navigator>
+  );
+}
+const TabBlogStack = createStackNavigator<TabBlogParamList>();
+
+function TabBlogNavigator() {
+  return (
+    <TabBlogStack.Navigator>
+      <TabBlogStack.Screen
+        name="TabBlogScreen"
+        component={TabBlogScreen}
+        options={{ headerTitle: 'Tab Blog Title' }}
+      />
+    </TabBlogStack.Navigator>
   );
 }
 
