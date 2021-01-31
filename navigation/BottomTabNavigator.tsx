@@ -23,7 +23,7 @@ export default function BottomTabNavigator() {
         name="Accueil"
         component={TabOneNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-home" color={color} />,
         }}
       />
       <BottomTab.Screen
@@ -60,7 +60,7 @@ function TabOneNavigator() {
       <TabOneStack.Screen
         name="TabOneScreen"
         component={TabOneScreen}
-        options={{ headerTitle: 'Tab One Title' }}
+        options={{ headerTitle: 'Bienvenue sur mon App !' }}
       />
     </TabOneStack.Navigator>
   );
@@ -73,7 +73,7 @@ function TabBlogNavigator() {
       <TabBlogStack.Screen
         name="TabBlogScreen"
         component={TabBlogScreen}
-        options={{ headerTitle: 'Tab Blog Title' }}
+        options={{ headerTitle: 'Anthoni Marie - Blog' }}
       />
     </TabBlogStack.Navigator>
   );
