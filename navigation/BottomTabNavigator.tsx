@@ -36,7 +36,7 @@ export default function BottomTabNavigator() {
         }}
       />
       <BottomTab.Screen
-        name="Me contacter"
+        name="Contacter"
         component={TabTwoNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="rocket-sharp" color={color} />,

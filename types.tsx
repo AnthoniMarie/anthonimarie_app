@@ -7,7 +7,7 @@ export type BottomTabParamList = {
   Accueil: undefined;
   Blog: undefined;
   Projets: undefined;
-  Contact: undefined;
+  Contacter: undefined;
   TabTwo: undefined;
 };
 
