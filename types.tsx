@@ -21,4 +21,5 @@ export type TabTwoParamList = {
 
 export type TabBlogParamList = {
   TabBlogScreen: undefined;
+  TabBlogDetailsScreen: undefined;
 };

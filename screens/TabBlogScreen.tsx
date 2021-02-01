@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { StyleSheet, TouchableOpacity, Image, Alert, ScrollView, FlatList, Button, ActivityIndicator} from 'react-native';
+import { StyleSheet, TouchableOpacity, Image, Alert, ScrollView, FlatList, Button, ActivityIndicator, RefreshControl} from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View, SocialBlogBar } from '../components/Themed';
+import Constants from 'expo-constants';
 
 export default class Blog extends React.Component<any, any> {
 
@@ -11,14 +12,15 @@ export default class Blog extends React.Component<any, any> {
     this.state = {
       data: [],
       isLoaded: false
-      // data: [
-      //   { id: 1, title: "test1", time: "2021-01-31 00:15 pm", image: "https://anthonimarie-static-thumbs.s3.amazonaws.com/27/conversions/anthominiature-thumb.jpg", description: "desc1" },
-      //   { id: 2, title: "test2", time: "2021-02-01 00:30 pm", image: "https://anthonimarie-static-thumbs.s3.amazonaws.com/23/conversions/dunouveauetpointsurmesserivces-thumb.jpg", description: "desc2" },
-      // ]
     };
   }
 
   componentDidMount() {
+    this.refreshList();
+  }
+
+  refreshList() {
+    this.setState({ isLoaded: false });
     fetch('https://anthoni-marie.fr/dolcevita/posts/')
     .then((response) => response.json())
     .then((responseJson) => {
@@ -31,12 +33,11 @@ export default class Blog extends React.Component<any, any> {
     .catch( error => {
         console.error(error);
     });
-}
+  }
 
   render() {
-    //console.log(this.state)
     return (
-      <View style={styles.container}>
+      <View style={styles.container} >
         { this.state.isLoaded ? <FlatList style={styles.list}
           data={this.state.data}
           keyExtractor={(item) => {
@@ -51,6 +52,7 @@ export default class Blog extends React.Component<any, any> {
             const item = post.item;
             return (
               <View style={styles.card}>
+                <Button onPress={() => this.refreshList()} title="Recharger" accessibilityLabel="Test" />
                 <Image style={styles.cardImage} source={{ uri: item.thumbnail_url }} />
                 <View style={styles.cardHeader}>
                   <View>
@@ -78,7 +80,8 @@ export default class Blog extends React.Component<any, any> {
                     </View>
                   </View>
                 </SocialBlogBar>
-                <Button onPress={() => Alert.alert("Bravo tu as (vu) l'article bg")} title="Voir l'article" accessibilityLabel="Test" />
+                {/* <Button onPress={() => Alert.alert("Bravo tu as (vu) l'article bg")} title="Voir l'article" accessibilityLabel="Test" /> */}
+                <Button title="Voir l'article" onPress={() => { this.props.navigation.navigate('TabBlogDetailsScreen', { itemId: 86,otherParam: 'anything you want here',});}}/>
               </View>
             )
           }} /> : <ActivityIndicator size="large" /> }

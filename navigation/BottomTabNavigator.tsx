@@ -8,7 +8,9 @@ import useColorScheme from '../hooks/useColorScheme';
 import TabHomeScreen from '../screens/TabHomeScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import TabBlogScreen from '../screens/TabBlogScreen';
-import { BottomTabParamList, TabOneParamList, TabTwoParamList, TabBlogParamList } from '../types';
+import TabBlogDetailsScreen from '../screens/TabBlogDetailsScreen';
+
+import { BottomTabParamList, TabOneParamList, TabTwoParamList, TabBlogParamList} from '../types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -66,6 +68,7 @@ function TabOneNavigator() {
   );
 }
 const TabBlogStack = createStackNavigator<TabBlogParamList>();
+const TabBlogDetailsStack = createStackNavigator<TabBlogParamList>();
 
 function TabBlogNavigator() {
   return (
@@ -74,6 +77,11 @@ function TabBlogNavigator() {
         name="TabBlogScreen"
         component={TabBlogScreen}
         options={{ headerTitle: 'Anthoni Marie - Blog' }}
+      />
+      <TabBlogDetailsStack.Screen
+        name="TabBlogDetailsScreen"
+        component={TabBlogDetailsScreen}
+        options={{ headerTitle: 'Anthoni Marie - Détails blog' }}
       />
     </TabBlogStack.Navigator>
   );
