@@ -5,7 +5,7 @@ import * as React from 'react';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import TabOneScreen from '../screens/TabOneScreen';
+import TabHomeScreen from '../screens/TabHomeScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import TabBlogScreen from '../screens/TabBlogScreen';
 import { BottomTabParamList, TabOneParamList, TabTwoParamList, TabBlogParamList } from '../types';
@@ -30,7 +30,7 @@ export default function BottomTabNavigator() {
         name="Blog"
         component={TabBlogNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-man" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-newspaper" color={color} />,
         }}
       />
       <BottomTab.Screen
@@ -58,8 +58,8 @@ function TabOneNavigator() {
   return (
     <TabOneStack.Navigator>
       <TabOneStack.Screen
-        name="TabOneScreen"
-        component={TabOneScreen}
+        name="TabHomeScreen"
+        component={TabHomeScreen}
         options={{ headerTitle: 'Bienvenue sur mon App !' }}
       />
     </TabOneStack.Navigator>
