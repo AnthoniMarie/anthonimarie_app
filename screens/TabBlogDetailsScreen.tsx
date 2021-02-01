@@ -1,32 +1,18 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import { StyleSheet, TouchableOpacity, Image, Alert, ScrollView, FlatList, Button, ActivityIndicator, RefreshControl} from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View, SocialBlogBar } from '../components/Themed';
-import Constants from 'expo-constants';
 
-export default class BlogDetails extends React.Component<any, any> {
-
-  constructor(props: any) {
-    super(props);
-    this.state = {
-      data: [],
-      isLoaded: false
-    };
-  }
-
-  render() {
-    //console.log(this.state)
-    return (
-      <View style={styles.container} >
-        <View style={styles.card}>
-          <Text style={styles.title}>{this.props.route.params.title}</Text>
-          <Image style={styles.cardImage} source={{ uri: this.props.route.params.thumbnail_url }} />
-          <Text style={styles.description}>{this.props.route.params.description}</Text>
-        </View>
-      </View>
-    );
-  }
+export default function TabBlogDetailsScreen({ route, navigation }) {
+  const { title } = route.params;
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>{title}</Text>
+      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+      {/* <EditScreenInfo path="/screens/TabContactScreen.tsx" /> */}
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({

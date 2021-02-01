@@ -23,7 +23,7 @@ export default function BottomTabNavigator() {
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
       <BottomTab.Screen
         name="Accueil"
-        component={TabOneNavigator}
+        component={TabHomeNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="ios-home" color={color} />,
         }}
@@ -37,7 +37,7 @@ export default function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name="Contacter"
-        component={TabTwoNavigator}
+        component={TabContactNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="rocket-sharp" color={color} />,
         }}
@@ -54,17 +54,17 @@ function TabBarIcon(props: { name: React.ComponentProps<typeof Ionicons>['name']
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-const TabOneStack = createStackNavigator<TabOneParamList>();
+const TabHomeStack = createStackNavigator<TabOneParamList>();
 
-function TabOneNavigator() {
+function TabHomeNavigator() {
   return (
-    <TabOneStack.Navigator>
-      <TabOneStack.Screen
+    <TabHomeStack.Navigator>
+      <TabHomeStack.Screen
         name="TabHomeScreen"
         component={TabHomeScreen}
         options={{ headerTitle: 'Bienvenue sur mon App !' }}
       />
-    </TabOneStack.Navigator>
+    </TabHomeStack.Navigator>
   );
 }
 const TabBlogStack = createStackNavigator<TabBlogParamList>();
@@ -87,16 +87,16 @@ function TabBlogNavigator() {
   );
 }
 
-const TabTwoStack = createStackNavigator<TabTwoParamList>();
+const TabContactStack = createStackNavigator<TabTwoParamList>();
 
-function TabTwoNavigator() {
+function TabContactNavigator() {
   return (
-    <TabTwoStack.Navigator>
-      <TabTwoStack.Screen
+    <TabContactStack.Navigator>
+      <TabContactStack.Screen
         name="TabContactScreen"
         component={TabContactScreen}
         options={{ headerTitle: 'Anthoni Marie - Contact' }}
       />
-    </TabTwoStack.Navigator>
+    </TabContactStack.Navigator>
   );
 }

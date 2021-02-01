@@ -19,6 +19,7 @@ export default {
           Blog: {
             screens: {
               TabBlogScreen: 'one',
+              TabBlogDetailsScreen: 'one',
             },
           },
         },
