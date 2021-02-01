@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, TouchableOpacity, Image, Alert, ScrollView, FlatList, Button, ActivityIndicator} from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
-import { Text, View } from '../components/Themed';
+import { Text, View, SocialBlogBar } from '../components/Themed';
 
 export default class Blog extends React.Component<any, any> {
 
@@ -62,22 +62,23 @@ export default class Blog extends React.Component<any, any> {
                     </View>
                   </View>
                 </View>
-                <View style={styles.cardFooter}>
+                <SocialBlogBar style={styles.cardFooter}>
                   <View style={styles.socialBarContainer}>
                     <View style={styles.socialBarSection}>
                       <TouchableOpacity style={styles.socialBarButton}>
-                        <Image style={styles.icon} source={{ uri: 'https://img.icons8.com/material/96/2ecc71/visible.png' }} />
+                        <Image style={styles.icon} source={{ uri: 'https://img.icons8.com/ios/72/visible--v1.png' }} />
                         <Text style={styles.socialBarLabel}>0</Text>
                       </TouchableOpacity>
                     </View>
                     <View style={styles.socialBarSection}>
                       <TouchableOpacity style={styles.socialBarButton}>
-                        <Image style={styles.icon} source={{ uri: 'https://img.icons8.com/ios-glyphs/75/2ecc71/comments.png' }} />
+                        <Image style={styles.icon} source={{ uri: 'https://img.icons8.com/ios/72/speech-bubble-with-dots.png' }} />
                         <Text style={styles.socialBarLabel}>{item.comments_count}</Text>
                       </TouchableOpacity>
                     </View>
                   </View>
-                </View>
+                </SocialBlogBar>
+                <Button onPress={() => Alert.alert("Bravo tu as (vu) l'article bg")} title="Voir l'article" accessibilityLabel="Test" />
               </View>
             )
           }} /> : <ActivityIndicator size="large" /> }
@@ -89,7 +90,7 @@ export default class Blog extends React.Component<any, any> {
 const styles = StyleSheet.create({
   container:{
     flex:1,
-    marginTop:20,
+    marginTop:0,
   },
   list: {
     paddingHorizontal: 17,
@@ -99,15 +100,15 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   card:{
-    shadowColor: '#00000021',
-    shadowOffset: {
-      width: 2,
-      height: 2
-    },
-    shadowOpacity: 0.5,
-    shadowRadius: 4,
-    marginVertical: 8,
-    backgroundColor:"white"
+    // shadowColor: '#00000021',
+    // shadowOffset: {
+    //   width: 2,
+    //   height: 2
+    // },
+    // shadowOpacity: 0.5,
+    // shadowRadius: 4,
+    marginVertical: 8
+    // backgroundColor:"white"
   },
   cardHeader: {
     paddingVertical: 17,
@@ -129,7 +130,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     borderBottomLeftRadius: 1,
     borderBottomRightRadius: 1,
-    backgroundColor:"#EEEEEE",
+    //backgroundColor: "#EEEEEE",
+    //backgroundColor:"orange",
   },
   cardImage:{
     flex: 1,
@@ -169,7 +171,7 @@ const styles = StyleSheet.create({
   socialBarContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    flexDirection: 'row',
+    flexDirection: "row",
     flex: 1
   },
   socialBarSection: {

@@ -3,18 +3,20 @@ const tintColorDark = '#fff';
 
 export default {
   light: {
-    text: '#000',
+    text: 'black',
     background: '#fff',
     tint: tintColorLight,
     button_home: '#e58711',
+    social_blog_bar: 'orange',
     tabIconDefault: '#ccc',
     tabIconSelected: tintColorLight,
   },
   dark: {
-    text: '#fff',
+    text: 'white',
     background: '#000',
     tint: tintColorDark,
     button_home: '#e58711',
+    social_blog_bar: 'white',
     tabIconDefault: '#ccc',
     tabIconSelected: tintColorDark,
   },

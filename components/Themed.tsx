@@ -47,3 +47,10 @@ export function Button(props: ButtonProps) {
 
   return <DefaultButton color={backgroundColor} {...otherProps} />
 }
+
+export function SocialBlogBar(props: ViewProps) {
+  const { style, lightColor, darkColor, ...otherProps } = props;
+  const backgroundColor = useThemeColor({ light: lightColor, dark: darkColor }, 'social_blog_bar');
+
+  return <DefaultView style={[{ backgroundColor }, style]} {...otherProps} />;
+}

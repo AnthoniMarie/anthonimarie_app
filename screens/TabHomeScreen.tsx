@@ -14,7 +14,7 @@ export default function TabHomeScreen() {
         <Image source={require('../assets/images/pdp_anthonimarie_black.png')} style={styles.imagelogo} />
         <Text style={styles.title}>Accueil</Text>
         <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-        <Button onPress={() => Alert.alert("Bravo tu as cliqué bg")} title="Découvrir mes services" color="#841584" accessibilityLabel="Test" />
+        <Button onPress={() => Alert.alert("Bravo tu as cliqué bg")} title="Découvrir mes services" accessibilityLabel="Test" />
           {/* <EditScreenInfo path="/screens/TabHomeScreen.tsx" /> */}
       </View>
     // </ScrollView>
