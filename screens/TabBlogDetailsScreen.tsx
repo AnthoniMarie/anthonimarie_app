@@ -20,7 +20,9 @@ export default class BlogDetails extends React.Component<any, any> {
     return (
       <View style={styles.container} >
         <View style={styles.card}>
+          <Text style={styles.title}>{this.props.route.params.title}</Text>
           <Image style={styles.cardImage} source={{ uri: this.props.route.params.thumbnail_url }} />
+          <Text style={styles.description}>{this.props.route.params.description}</Text>
         </View>
       </View>
     );

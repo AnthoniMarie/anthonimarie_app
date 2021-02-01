@@ -6,7 +6,7 @@ import * as React from 'react';
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import TabHomeScreen from '../screens/TabHomeScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
+import TabContactScreen from '../screens/TabContactScreen';
 import TabBlogScreen from '../screens/TabBlogScreen';
 import TabBlogDetailsScreen from '../screens/TabBlogDetailsScreen';
 
@@ -36,10 +36,10 @@ export default function BottomTabNavigator() {
         }}
       />
       <BottomTab.Screen
-        name="Projets"
+        name="Me contacter"
         component={TabTwoNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code-working" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="rocket-sharp" color={color} />,
         }}
       />
     </BottomTab.Navigator>
@@ -93,9 +93,9 @@ function TabTwoNavigator() {
   return (
     <TabTwoStack.Navigator>
       <TabTwoStack.Screen
-        name="TabTwoScreen"
-        component={TabTwoScreen}
-        options={{ headerTitle: 'Tab Two Title' }}
+        name="TabContactScreen"
+        component={TabContactScreen}
+        options={{ headerTitle: 'Anthoni Marie - Contact' }}
       />
     </TabTwoStack.Navigator>
   );

@@ -81,7 +81,7 @@ export default class Blog extends React.Component<any, any> {
                   </View>
                 </SocialBlogBar>
                 {/* <Button onPress={() => Alert.alert("Bravo tu as (vu) l'article bg")} title="Voir l'article" accessibilityLabel="Test" /> */}
-                <Button title="Voir l'article" onPress={() => { this.props.navigation.navigate('TabBlogDetailsScreen', { itemId: 86,otherParam: 'anything you want here',});}}/>
+                <Button title="Voir l'article" onPress={() => { this.props.navigation.navigate('TabBlogDetailsScreen', { itemId: 10,title: item.title, thumbnail_url: item.thumbnail_url, otherParam: 'anything you want here',});}}/>
               </View>
             )
           }} /> : <ActivityIndicator size="large" /> }
