@@ -54,3 +54,10 @@ export function SocialBlogBar(props: ViewProps) {
 
   return <DefaultView style={[{ backgroundColor }, style]} {...otherProps} />;
 }
+
+export function SocialBlogSubBar(props: ViewProps) {
+  const { style, lightColor, darkColor, ...otherProps } = props;
+  const backgroundColor = useThemeColor({ light: lightColor, dark: darkColor }, 'social_blog_inbar');
+
+  return <DefaultView style={[{ backgroundColor }, style]} {...otherProps} />;
+}

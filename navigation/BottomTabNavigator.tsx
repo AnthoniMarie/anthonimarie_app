@@ -76,12 +76,12 @@ function TabBlogNavigator() {
       <TabBlogStack.Screen
         name="TabBlogScreen"
         component={TabBlogScreen}
-        options={{ headerTitle: 'Anthoni Marie - Blog' }}
+        options={{ headerTitle: 'Le Blog !' }}
       />
       <TabBlogDetailsStack.Screen
         name="TabBlogDetailsScreen"
         component={TabBlogDetailsScreen}
-        options={{ headerTitle: 'Anthoni Marie - Détails blog' }}
+        options={{ headerTitle: 'Le Blog ! - Détails', headerBackTitle: "Retour"}}
       />
     </TabBlogStack.Navigator>
   );

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, TouchableOpacity, Image, Alert, ScrollView, FlatList, Button, ActivityIndicator, RefreshControl} from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
-import { Text, View, SocialBlogBar } from '../components/Themed';
+import { Text, View, SocialBlogBar, SocialBlogSubBar } from '../components/Themed';
 import Constants from 'expo-constants';
 
 export default class Blog extends React.Component<any, any> {
@@ -38,6 +38,17 @@ export default class Blog extends React.Component<any, any> {
   render() {
     return (
       <View style={styles.container} >
+        <ScrollView refreshControl={
+                <RefreshControl
+                  refreshing={!this.state.isLoaded}
+                  onRefresh={() => this.refreshList()}
+                  tintColor="orange"
+                  title="Chargement..."
+                  titleColor="black"
+                  colors={['#ff0000', '#00ff00', '#0000ff']}
+                  progressBackgroundColor="#ffff00"
+                />
+              }>
         { this.state.isLoaded ? <FlatList style={styles.list}
           data={this.state.data}
           keyExtractor={(item) => {
@@ -51,8 +62,8 @@ export default class Blog extends React.Component<any, any> {
           renderItem={(post) => {
             const item = post.item;
             return (
-              <View style={styles.card}>
-                <Button onPress={() => this.refreshList()} title="Recharger" accessibilityLabel="Test" />
+              <TouchableOpacity style={styles.card} activeOpacity={50} onPress={() => { this.props.navigation.navigate('TabBlogDetailsScreen', { title: item.title, thumbnail_url: item.thumbnail_url, content: item.content }); }}>
+                {/* <Button onPress={() => this.refreshList()} title="Recharger" accessibilityLabel="Test" /> */}
                 <Image style={styles.cardImage} source={{ uri: item.thumbnail_url }} />
                 <View style={styles.cardHeader}>
                   <View>
@@ -66,25 +77,23 @@ export default class Blog extends React.Component<any, any> {
                 </View>
                 <SocialBlogBar style={styles.cardFooter}>
                   <View style={styles.socialBarContainer}>
-                    <View style={styles.socialBarSection}>
+                    <SocialBlogSubBar style={styles.socialBarSection}>
                       <TouchableOpacity style={styles.socialBarButton}>
-                        <Image style={styles.icon} source={{ uri: 'https://img.icons8.com/ios/72/visible--v1.png' }} />
-                        <Text style={styles.socialBarLabel}>0</Text>
-                      </TouchableOpacity>
-                    </View>
-                    <View style={styles.socialBarSection}>
-                      <TouchableOpacity style={styles.socialBarButton}>
-                        <Image style={styles.icon} source={{ uri: 'https://img.icons8.com/ios/72/speech-bubble-with-dots.png' }} />
+                        <Image style={styles.icon} source={{ uri: 'https://img.icons8.com/color/48/000000/chat--v3.png' }} />
                         <Text style={styles.socialBarLabel}>{item.comments_count}</Text>
                       </TouchableOpacity>
-                    </View>
+                    </SocialBlogSubBar>
                   </View>
                 </SocialBlogBar>
                 {/* <Button onPress={() => Alert.alert("Bravo tu as (vu) l'article bg")} title="Voir l'article" accessibilityLabel="Test" /> */}
-                <Button title="Voir l'article" onPress={() => { this.props.navigation.navigate('TabBlogDetailsScreen', {title: item.title, thumbnail_url: item.thumbnail_url, content: item.content, otherParam: 'anything you want here',});}}/>
-              </View>
+                <TouchableOpacity style={styles.see_article} onPress={() => { this.props.navigation.navigate('TabBlogDetailsScreen', { title: item.title, thumbnail_url: item.thumbnail_url, content: item.content }); }}>
+                <Image style={styles.icon} source={{ uri: 'https://img.icons8.com/color/48/000000/visible--v1.png' }} />
+                <Button title="Voir l'article" onPress={() => { this.props.navigation.navigate('TabBlogDetailsScreen', { title: item.title, thumbnail_url: item.thumbnail_url, content: item.content }); }}/>
+                </TouchableOpacity>
+              </TouchableOpacity>
             )
-          }} /> : <ActivityIndicator size="large" /> }
+            }} /> : <ActivityIndicator size="large" />}
+          </ScrollView> 
       </View>
     );
   }
@@ -102,16 +111,19 @@ const styles = StyleSheet.create({
   separator: {
     marginTop: 10,
   },
+  see_article: {
+    alignItems: 'center',
+    backgroundColor: "#f2f7f4",
+  },
   card:{
-    // shadowColor: '#00000021',
-    // shadowOffset: {
-    //   width: 2,
-    //   height: 2
-    // },
-    // shadowOpacity: 0.5,
-    // shadowRadius: 4,
-    marginVertical: 8
-    // backgroundColor:"white"
+    shadowColor: '#00000021',
+    shadowOffset: {
+      width: 2,
+      height: 2
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 4,
+    marginVertical: 8,
   },
   cardHeader: {
     paddingVertical: 17,

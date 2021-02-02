@@ -11,35 +11,19 @@ export default class BlogDetail extends React.Component<any, any> {
     const { title, thumbnail_url, content } = this.props.route.params;
     return (
       <Container>
-        <Header />
         <Content>
-          <Card style={{ flex: 0 }}>
-            <CardItem>
-              <Left>
-                <Thumbnail source={{ uri: 'Image URL' }} />
-                <Body>
-                  <Text>{title}</Text>
-                  <Text note>April 15, 2016</Text>
-                </Body>
-              </Left>
-            </CardItem>
-            <CardItem>
               <Body>
-                <Image source={{ uri: 'Image URL' }} style={{ height: 200, width: 200, flex: 1 }} />
+                <Image source={{ uri: thumbnail_url }} style={{ height: 200, width: 200, flex: 1 }} />
                 <Text>
-                  //Your text here
+                  {content}
                     </Text>
               </Body>
-            </CardItem>
-            <CardItem>
               <Left>
                 {/* <Button transparent textStyle={{color: '#87838B'}}>
                       <Icon name="logo-github" />
                       <Text>1,926 stars</Text>
                     </Button> */}
               </Left>
-            </CardItem>
-          </Card>
         </Content>
       </Container>
       // <View style={styles.container}>
