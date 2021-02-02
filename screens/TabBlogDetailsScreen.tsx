@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { Component } from 'react';
 import { StyleSheet, TouchableOpacity, Image, Alert, ScrollView, FlatList, ActivityIndicator, RefreshControl } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Thumbnail, Button, Icon, Left, Body } from 'native-base';
 
@@ -6,16 +6,17 @@ import { Container, Header, Content, Card, CardItem, Thumbnail, Button, Icon, Le
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View, SocialBlogBar } from '../components/Themed';
 
-export default function TabBlogDetailsScreen({route} : {route:any}) {
-  const { title, thumbnail_url, content } = route.params;
-  return (
-    <Container>
+export default class BlogDetail extends React.Component<any, any> {
+  render() {
+    const { title, thumbnail_url, content } = this.props.route.params;
+    return (
+      <Container>
         <Header />
         <Content>
-          <Card style={{flex: 0}}>
+          <Card style={{ flex: 0 }}>
             <CardItem>
               <Left>
-                <Thumbnail source={{uri: 'Image URL'}} />
+                <Thumbnail source={{ uri: 'Image URL' }} />
                 <Body>
                   <Text>{title}</Text>
                   <Text note>April 15, 2016</Text>
@@ -24,31 +25,32 @@ export default function TabBlogDetailsScreen({route} : {route:any}) {
             </CardItem>
             <CardItem>
               <Body>
-                <Image source={{uri: 'Image URL'}} style={{height: 200, width: 200, flex: 1}}/>
+                <Image source={{ uri: 'Image URL' }} style={{ height: 200, width: 200, flex: 1 }} />
                 <Text>
                   //Your text here
-                </Text>
+                    </Text>
               </Body>
             </CardItem>
             <CardItem>
               <Left>
                 {/* <Button transparent textStyle={{color: '#87838B'}}>
-                  <Icon name="logo-github" />
-                  <Text>1,926 stars</Text>
-                </Button> */}
+                      <Icon name="logo-github" />
+                      <Text>1,926 stars</Text>
+                    </Button> */}
               </Left>
             </CardItem>
           </Card>
         </Content>
       </Container>
-    // <View style={styles.container}>
-    //   <Text style={styles.title}>{title}</Text>
-    //   <Text style={styles.title}>{content}</Text>
-    //   <Image style={styles.cardImage} source={{ uri: thumbnail_url }} />
-    //   <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-    //   {/* <EditScreenInfo path="/screens/TabContactScreen.tsx" /> */}
-    // </View>
-  );
+      // <View style={styles.container}>
+      //   <Text style={styles.title}>{title}</Text>
+      //   <Text style={styles.title}>{content}</Text>
+      //   <Image style={styles.cardImage} source={{ uri: thumbnail_url }} />
+      //   <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+      //   {/* <EditScreenInfo path="/screens/TabContactScreen.tsx" /> */}
+      // </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
