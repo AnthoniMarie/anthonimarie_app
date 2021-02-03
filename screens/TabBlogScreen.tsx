@@ -5,6 +5,9 @@ import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View, SocialBlogBar, SocialBlogSubBar } from '../components/Themed';
 import Constants from 'expo-constants';
 
+import Moment from 'react-moment';
+import 'moment/locale/fr';
+
 export default class Blog extends React.Component<any, any> {
 
   constructor(props: any) {
@@ -27,7 +30,6 @@ export default class Blog extends React.Component<any, any> {
         return responseJson;
     })
       .then(routines => {
-        // console.log(routines);
         this.setState({data: routines.data, isLoaded:true});
       })
     .catch( error => {
@@ -70,7 +72,7 @@ export default class Blog extends React.Component<any, any> {
                     <Text style={styles.description}>{item.description}</Text>
                     <View style={styles.timeContainer}>
                       <Image style={styles.iconData} source={{ uri: 'https://img.icons8.com/color/96/3498db/calendar.png' }} />
-                      <Text style={styles.time}>{item.posted_at}</Text>
+                      <Moment fromNow element={Text}>{item.posted_at}</Moment>
                     </View>
                   </View>
                 </View>
@@ -79,7 +81,9 @@ export default class Blog extends React.Component<any, any> {
                     <SocialBlogSubBar style={styles.socialBarSection}>
                       <TouchableOpacity style={styles.socialBarButton}>
                         <Image style={styles.icon} source={{ uri: 'https://img.icons8.com/color/48/000000/chat--v3.png' }} />
-                        <Text style={styles.socialBarLabel}>{item.comments_count}</Text>
+                        <Text style={styles.socialBarLabel}>{item.comments_count + ' '}</Text>
+                        <Image style={styles.icon} source={{ uri: 'https://img.icons8.com/color/48/000000/lime.png' }} />
+                        <Text style={styles.socialBarLabel}>?</Text>
                       </TouchableOpacity>
                     </SocialBlogSubBar>
                   </View>
@@ -143,8 +147,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     borderBottomLeftRadius: 1,
     borderBottomRightRadius: 1,
-    //backgroundColor: "#EEEEEE",
-    //backgroundColor:"orange",
   },
   cardImage:{
     flex: 1,
@@ -193,7 +195,7 @@ const styles = StyleSheet.create({
   socialBarlabel: {
     marginLeft: 8,
     alignSelf: 'flex-end',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   socialBarButton:{
     flexDirection: 'row',

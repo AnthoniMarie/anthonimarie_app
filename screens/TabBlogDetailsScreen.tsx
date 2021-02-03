@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { StyleSheet, TouchableOpacity, Image, Alert, ScrollView, FlatList, ActivityIndicator, RefreshControl} from 'react-native';
 import { Container, Header, Content, Card, CardItem, Thumbnail, Button, Icon, Left, Body, H1 } from 'native-base';
 import HTML from "react-native-render-html";
+import Moment from 'react-moment';
+import 'moment/locale/fr';
 
 import { Text, View, SocialBlogBar } from '../components/Themed';
 export default class BlogDetail extends React.Component<any, any> {
@@ -17,15 +19,18 @@ export default class BlogDetail extends React.Component<any, any> {
             <Left>
                 <Button transparent textStyle={{color: '#87838B'}}>
                 <Image style={styles.iconData} source={{ uri: 'https://img.icons8.com/color/96/3498db/calendar.png' }} />
-                <Text style={styles.time}>{posted_at}</Text>
+                {/* <Text style={styles.time}>{posted_at}</Text> */}
+                <Moment fromNow element={Text}>{posted_at}</Moment>
                 <Image style={styles.iconData} source={{ uri: 'https://img.icons8.com/color/48/000000/chat--v3.png' }} />
                 <Text style={styles.time}>{comments_count}</Text>
                 </Button>
               </Left>
               <Body>
-              <Image source={{ uri: thumbnail_url }} style={styles.blog_img} />
-              <View style={styles.separator_inblog}/>
+              <HTML source={{ html: '<img alt="" src="'+ thumbnail_url + '" style="float: right; height: 274px; width: 500px;"></img>' }} />
+              <View style={styles.separator_inblog} />
+              <View style={{paddingHorizontal: 16}}>
                 <HTML source={{ html: content }} />
+              </View>
               </Body>
         </Content>
         </Container>
@@ -44,7 +49,7 @@ const styles = StyleSheet.create({
     flex:1,
     marginTop:0,
     paddingVertical: 12.5,
-    paddingHorizontal: 16,
+    //paddingHorizontal: 16,
   },
   blog_img: {
     width: 1000,

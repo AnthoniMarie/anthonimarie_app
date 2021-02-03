@@ -1,24 +1,63 @@
 import * as React from 'react';
-import { StyleSheet, Alert, Image, ScrollView } from 'react-native';
+import {
+  ImageBackground,
+  Image,
+  StyleSheet,
+  StatusBar,
+  Dimensions
+} from "react-native";
 import * as StoreReview from 'expo-store-review';
 import { WebView } from 'react-native-webview';
-
 import EditScreenInfo from '../components/EditScreenInfo';
-import { Text, View, Button } from '../components/Themed';
+import { View } from '../components/Themed';
+import { Block, Button, Text, theme } from "galio-framework";
 
-export default function TabHomeScreen() {
-  return (
-    //<WebView source={{ uri: 'https://anthoni-marie.fr/contact' }} style={{ height: "100%", width: "100%"}} />
-    // <ScrollView style={styles.scrollView} bouncesZoom={true} centerContent={true}>
-    <View style={styles.container}>
-        <Image source={require('../assets/images/pdp_anthonimarie_black.png')} style={styles.imagelogo} />
-        <Text style={styles.title}>Accueil</Text>
-        <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-        <Button onPress={() => Alert.alert("Bravo tu as cliqué bg")} title="Découvrir mes services" accessibilityLabel="Test" />
-          {/* <EditScreenInfo path="/screens/TabHomeScreen.tsx" /> */}
-      </View>
-    // </ScrollView>
-  );
+const { height, width } = Dimensions.get("screen");
+export default class Home extends React.Component<any, any> {
+  render() {
+    return (
+      <Block flex style={styles.container}>
+        <StatusBar hidden />
+        <Block flex center>
+        <ImageBackground
+            source={require('../assets/images/bg_home.jpg')} style={{ height, width, zIndex: 1 }}/>
+        </Block>
+        <Block center>
+          <Image source={require('../assets/images/pdp_anthonimarie_black.png')} style={styles.logo} />
+        </Block>
+        <Block flex space="between" style={styles.padded}>
+            <Block flex space="around" style={{ zIndex: 2 }}>
+              <Block style={styles.title}>
+                <Block>
+                  <Text color="white" size={60}>
+                    Bienvenue !
+                  </Text>
+              </Block>
+                <Block style={styles.subTitle}>
+                  <Text color="white" size={16}>
+                    Profitez de mon site web sur mobile :)
+                  </Text>
+                </Block>
+              </Block>
+              <Block center>
+                <Button
+                  style={styles.button}
+                  onPress={() => alert("bisous")}
+                >
+                Découvrir
+                </Button>
+                <Button
+                style={styles.button_second}
+                onPress={() => this.props.navigation.navigate('TabBlogScreen')}
+                >
+                  Voir mes derniers posts
+                </Button>
+              </Block>
+          </Block>
+        </Block>
+      </Block>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -27,24 +66,40 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  scrollView: {
-    backgroundColor: 'pink',
-    marginHorizontal: 10,
+  padded: {
+    position: "relative",
+    bottom: theme.SIZES.BASE,
+    zIndex: 2,
   },
-  imagelogo: {
-    position: 'absolute',
-    top: 10,
-    height: 50,
-    width: 50,
+  button: {
+    width: width - theme.SIZES.BASE * 4,
+    height: theme.SIZES.BASE * 3,
+    shadowRadius: 0,
+    shadowOpacity: 0,
+    backgroundColor: '#e58711'
+  },
+  button_second: {
+    width: width - theme.SIZES.BASE * 4,
+    height: theme.SIZES.BASE * 3,
+    shadowRadius: 0,
+    shadowOpacity: 0,
+    backgroundColor: '#272622'
+  },
+  logo: {
+    width: 100,
+    height: 100,
+    zIndex: 2,
+    position: 'relative',
+    marginTop: '-55%'
   },
   title: {
-    //height: 525,
-    fontSize: 20,
-    fontWeight: 'bold',
+    marginTop: '-5%',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '60%',
-  },
+  subTitle: {
+    marginTop: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+  }
 });

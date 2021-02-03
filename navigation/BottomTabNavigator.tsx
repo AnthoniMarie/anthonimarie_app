@@ -10,7 +10,7 @@ import TabContactScreen from '../screens/TabContactScreen';
 import TabBlogScreen from '../screens/TabBlogScreen';
 import TabBlogDetailsScreen from '../screens/TabBlogDetailsScreen';
 
-import { BottomTabParamList, TabOneParamList, TabTwoParamList, TabBlogParamList, TabDevisParamList} from '../types';
+import { BottomTabParamList, TabHomeParamList, TabContactParamList, TabBlogParamList, TabDevisParamList} from '../types';
 import TabDevisScreen from '../screens/TabDevisScreen';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
@@ -37,7 +37,7 @@ export default function BottomTabNavigator() {
         }}
       />
       <BottomTab.Screen
-        name="Devis en ligne"
+        name="Devis"
         component={TabDevisNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="ios-construct-outline" color={color} />,
@@ -103,7 +103,7 @@ function TabContactNavigator() {
       <TabContactStack.Screen
         name="TabContactScreen"
         component={TabContactScreen}
-        options={{ headerTitle: 'Anthoni Marie - Contact' }}
+        options={{ headerTitle: 'Restons en contact !' }}
       />
     </TabContactStack.Navigator>
   );
@@ -117,7 +117,7 @@ function TabDevisNavigator() {
       <TabDevisStack.Screen
         name="TabDevisScreen"
         component={TabDevisScreen}
-        options={{ headerTitle: 'Anthoni Marie - Contact' }}
+        options={{ headerTitle: 'Réalisons votre devis' }}
       />
     </TabDevisStack.Navigator>
   );

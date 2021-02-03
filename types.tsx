@@ -8,7 +8,7 @@ export type BottomTabParamList = {
   Blog: undefined;
   Projets: undefined;
   Contacter: undefined;
-  TabTwo: undefined;
+  Devis: undefined;
 };
 
 export type TabHomeParamList = {

@@ -13,7 +13,7 @@ export default class Devis extends React.Component<any, any> {
         <Text style={styles.title}>Réaliser mon devis en ligne</Text>
         <Text style={styles.subtitle}>Arrive bientôt...</Text>
         {/* <LottieView imageAssetsFolder='lottie/images' source={require('../assets/images/13554-coole-robbe.json')} autoPlay loop /> */}
-        <Image source={{ uri: 'https://s.anthoni-marie.fr/m_w/images/app/13554-coole-robbe.gif' }} style={styles.blog_img} />
+        <Image source={{ uri: 'https://s.anthoni-marie.fr/m_w/images/app/cool-man.gif' }} style={styles.blog_img} />
       </View>
     );
   }
