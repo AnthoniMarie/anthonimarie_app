@@ -10,7 +10,8 @@ import TabContactScreen from '../screens/TabContactScreen';
 import TabBlogScreen from '../screens/TabBlogScreen';
 import TabBlogDetailsScreen from '../screens/TabBlogDetailsScreen';
 
-import { BottomTabParamList, TabOneParamList, TabTwoParamList, TabBlogParamList} from '../types';
+import { BottomTabParamList, TabOneParamList, TabTwoParamList, TabBlogParamList, TabDevisParamList} from '../types';
+import TabDevisScreen from '../screens/TabDevisScreen';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -36,6 +37,13 @@ export default function BottomTabNavigator() {
         }}
       />
       <BottomTab.Screen
+        name="Devis en ligne"
+        component={TabDevisNavigator}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-construct-outline" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
         name="Contacter"
         component={TabContactNavigator}
         options={{
@@ -54,7 +62,7 @@ function TabBarIcon(props: { name: React.ComponentProps<typeof Ionicons>['name']
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-const TabHomeStack = createStackNavigator<TabOneParamList>();
+const TabHomeStack = createStackNavigator<TabHomeParamList>();
 
 function TabHomeNavigator() {
   return (
@@ -87,7 +95,7 @@ function TabBlogNavigator() {
   );
 }
 
-const TabContactStack = createStackNavigator<TabTwoParamList>();
+const TabContactStack = createStackNavigator<TabContactParamList>();
 
 function TabContactNavigator() {
   return (
@@ -98,5 +106,19 @@ function TabContactNavigator() {
         options={{ headerTitle: 'Anthoni Marie - Contact' }}
       />
     </TabContactStack.Navigator>
+  );
+}
+
+const TabDevisStack = createStackNavigator<TabDevisParamList>();
+
+function TabDevisNavigator() {
+  return (
+    <TabDevisStack.Navigator>
+      <TabDevisStack.Screen
+        name="TabDevisScreen"
+        component={TabDevisScreen}
+        options={{ headerTitle: 'Anthoni Marie - Contact' }}
+      />
+    </TabDevisStack.Navigator>
   );
 }

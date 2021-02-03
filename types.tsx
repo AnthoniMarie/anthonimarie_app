@@ -11,15 +11,19 @@ export type BottomTabParamList = {
   TabTwo: undefined;
 };
 
-export type TabOneParamList = {
+export type TabHomeParamList = {
   TabHomeScreen: undefined;
 };
 
-export type TabTwoParamList = {
+export type TabContactParamList = {
   TabContactScreen: undefined;
 };
 
 export type TabBlogParamList = {
   TabBlogScreen: undefined;
   TabBlogDetailsScreen: undefined;
+};
+
+export type TabDevisParamList = {
+  TabDevisScreen: undefined;
 };

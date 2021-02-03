@@ -62,8 +62,7 @@ export default class Blog extends React.Component<any, any> {
           renderItem={(post) => {
             const item = post.item;
             return (
-              <TouchableOpacity style={styles.card} activeOpacity={50} onPress={() => { this.props.navigation.navigate('TabBlogDetailsScreen', { title: item.title, thumbnail_url: item.thumbnail_url, content: item.content }); }}>
-                {/* <Button onPress={() => this.refreshList()} title="Recharger" accessibilityLabel="Test" /> */}
+              <TouchableOpacity style={styles.card} activeOpacity={50} onPress={() => { this.props.navigation.navigate('TabBlogDetailsScreen', { title: item.title, thumbnail_url: item.thumbnail_url, content: item.content, posted_at: item.posted_at, comments_count: item.comments_count }); }}>
                 <Image style={styles.cardImage} source={{ uri: item.thumbnail_url }} />
                 <View style={styles.cardHeader}>
                   <View>
@@ -85,10 +84,9 @@ export default class Blog extends React.Component<any, any> {
                     </SocialBlogSubBar>
                   </View>
                 </SocialBlogBar>
-                {/* <Button onPress={() => Alert.alert("Bravo tu as (vu) l'article bg")} title="Voir l'article" accessibilityLabel="Test" /> */}
-                <TouchableOpacity style={styles.see_article} onPress={() => { this.props.navigation.navigate('TabBlogDetailsScreen', { title: item.title, thumbnail_url: item.thumbnail_url, content: item.content }); }}>
+                <TouchableOpacity style={styles.see_article} onPress={() => { this.props.navigation.navigate('TabBlogDetailsScreen', { title: item.title, thumbnail_url: item.thumbnail_url, content: item.content, posted_at: item.posted_at, comments_count: item.comments_count}); }}>
                 <Image style={styles.icon} source={{ uri: 'https://img.icons8.com/color/48/000000/visible--v1.png' }} />
-                <Button title="Voir l'article" onPress={() => { this.props.navigation.navigate('TabBlogDetailsScreen', { title: item.title, thumbnail_url: item.thumbnail_url, content: item.content }); }}/>
+                <Button title="Voir l'article" onPress={() => { this.props.navigation.navigate('TabBlogDetailsScreen', { title: item.title, thumbnail_url: item.thumbnail_url, content: item.content, posted_at: item.posted_at, comments_count: item.comments_count }); }}/>
                 </TouchableOpacity>
               </TouchableOpacity>
             )
@@ -152,7 +150,6 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 150
   },
-  /******** card components **************/
   title:{
     fontSize:18,
     flex:1,
@@ -182,7 +179,6 @@ const styles = StyleSheet.create({
   timeContainer:{
     flexDirection:'row'
   },
-  /******** social bar ******************/
   socialBarContainer: {
     justifyContent: 'center',
     alignItems: 'center',

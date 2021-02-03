@@ -1,46 +1,55 @@
 import React, { Component } from 'react';
-import { StyleSheet, TouchableOpacity, Image, Alert, ScrollView, FlatList, ActivityIndicator, RefreshControl } from 'react-native';
-import { Container, Header, Content, Card, CardItem, Thumbnail, Button, Icon, Left, Body } from 'native-base';
+import { StyleSheet, TouchableOpacity, Image, Alert, ScrollView, FlatList, ActivityIndicator, RefreshControl} from 'react-native';
+import { Container, Header, Content, Card, CardItem, Thumbnail, Button, Icon, Left, Body, H1 } from 'native-base';
+import HTML from "react-native-render-html";
 
-
-import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View, SocialBlogBar } from '../components/Themed';
-
 export default class BlogDetail extends React.Component<any, any> {
   render() {
-    const { title, thumbnail_url, content } = this.props.route.params;
+    const { title, thumbnail_url, content, posted_at, comments_count } = this.props.route.params;
+
     return (
+      <View style={styles.container}>
       <Container>
-        <Content>
-              <Body>
-                <Image source={{ uri: thumbnail_url }} style={{ height: 200, width: 200, flex: 1 }} />
-                <Text>
-                  {content}
-                    </Text>
-              </Body>
-              <Left>
-                {/* <Button transparent textStyle={{color: '#87838B'}}>
-                      <Icon name="logo-github" />
-                      <Text>1,926 stars</Text>
-                    </Button> */}
+          <Content>
+            <H1 style={{ flex: 1, alignSelf: 'center' }}>{title + '\n'}</H1>
+            <View style={styles.separator_inblog}/>
+            <Left>
+                <Button transparent textStyle={{color: '#87838B'}}>
+                <Image style={styles.iconData} source={{ uri: 'https://img.icons8.com/color/96/3498db/calendar.png' }} />
+                <Text style={styles.time}>{posted_at}</Text>
+                <Image style={styles.iconData} source={{ uri: 'https://img.icons8.com/color/48/000000/chat--v3.png' }} />
+                <Text style={styles.time}>{comments_count}</Text>
+                </Button>
               </Left>
+              <Body>
+              <Image source={{ uri: thumbnail_url }} style={styles.blog_img} />
+              <View style={styles.separator_inblog}/>
+                <HTML source={{ html: content }} />
+              </Body>
         </Content>
-      </Container>
-      // <View style={styles.container}>
-      //   <Text style={styles.title}>{title}</Text>
-      //   <Text style={styles.title}>{content}</Text>
-      //   <Image style={styles.cardImage} source={{ uri: thumbnail_url }} />
-      //   <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      //   {/* <EditScreenInfo path="/screens/TabContactScreen.tsx" /> */}
-      // </View>
+        </Container>
+        </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  separator_inblog: {
+    borderBottomColor: 'black',
+    borderBottomWidth: 1,
+    margin: 10,
+  },
   container:{
     flex:1,
     marginTop:0,
+    paddingVertical: 12.5,
+    paddingHorizontal: 16,
+  },
+  blog_img: {
+    width: 1000,
+    height: 200,
+    resizeMode: 'contain',
   },
   list: {
     paddingHorizontal: 17,
@@ -50,15 +59,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   card:{
-    // shadowColor: '#00000021',
-    // shadowOffset: {
-    //   width: 2,
-    //   height: 2
-    // },
-    // shadowOpacity: 0.5,
-    // shadowRadius: 4,
     marginVertical: 8
-    // backgroundColor:"white"
   },
   cardHeader: {
     paddingVertical: 17,
@@ -80,14 +81,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     borderBottomLeftRadius: 1,
     borderBottomRightRadius: 1,
-    //backgroundColor: "#EEEEEE",
-    //backgroundColor:"orange",
   },
   cardImage:{
     flex: 1,
     height: 150
   },
-  /******** card components **************/
   title:{
     fontSize:18,
     flex:1,
@@ -117,7 +115,6 @@ const styles = StyleSheet.create({
   timeContainer:{
     flexDirection:'row'
   },
-  /******** social bar ******************/
   socialBarContainer: {
     justifyContent: 'center',
     alignItems: 'center',
