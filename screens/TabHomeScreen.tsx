@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { Component } from 'react';
 import {
   ImageBackground,
   Image,
@@ -16,6 +16,7 @@ const { height, width } = Dimensions.get("screen");
 export default class Home extends React.Component<any, any> {
   render() {
     return (
+    <View style={styles.container} >
       <Block flex style={styles.container}>
         <StatusBar />
         <Block flex center>
@@ -46,16 +47,14 @@ export default class Home extends React.Component<any, any> {
                 >
                 Découvrir
                 </Button>
-                <Button
-                style={styles.button_second}
-                onPress={() => this.props.navigation.navigate('TabBlogScreen')}
-                >
+                <Button style={styles.button_second} onPress={() => { this.props.navigation.navigate('TabBlogScreen'); }}>
                   Voir mes derniers posts
                 </Button>
               </Block>
           </Block>
         </Block>
-      </Block>
+        </Block>
+      </View>
     );
   }
 }
