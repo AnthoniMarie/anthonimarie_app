@@ -41,16 +41,16 @@ export default class Blog extends React.Component<any, any> {
     return (
       <View style={styles.container} >
         <ScrollView refreshControl={
-                <RefreshControl
-                  refreshing={!this.state.isLoaded}
-                  onRefresh={() => this.refreshList()}
-                  tintColor="orange"
-                  title="Chargement..."
-                  titleColor="black"
-                  colors={['#ff0000', '#00ff00', '#0000ff']}
-                  progressBackgroundColor="#ffff00"
-                />
-              }>
+          <RefreshControl
+            refreshing={!this.state.isLoaded}
+            onRefresh={() => this.refreshList()}
+            tintColor="orange"
+            title="Chargement..."
+            titleColor="black"
+            colors={['#ff0000', '#00ff00', '#0000ff']}
+            progressBackgroundColor="#ffff00"
+          />
+        }>
         { this.state.isLoaded ? <FlatList style={styles.list}
           data={this.state.data}
           keyExtractor={(item) => {
@@ -103,8 +103,8 @@ export default class Blog extends React.Component<any, any> {
 
 const styles = StyleSheet.create({
   container:{
-    flex:1,
-    marginTop:0,
+    flex: 1,
+    marginTop: 0,
   },
   list: {
     paddingHorizontal: 17,
@@ -153,8 +153,8 @@ const styles = StyleSheet.create({
     height: 150
   },
   title:{
-    fontSize:18,
-    flex:1,
+    fontSize: 18,
+    flex: 1,
   }, 
   description:{
     fontSize:15,
