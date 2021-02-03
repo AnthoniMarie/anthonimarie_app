@@ -13,7 +13,9 @@ import TabBlogDetailsScreen from '../screens/TabBlogDetailsScreen';
 import { BottomTabParamList, TabHomeParamList, TabContactParamList, TabBlogParamList, TabDevisParamList} from '../types';
 import TabDevisScreen from '../screens/TabDevisScreen';
 
-const BottomTab = createBottomTabNavigator<BottomTabParamList>();
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+
+const BottomTab = createMaterialBottomTabNavigator<BottomTabParamList>();
 
 export default function BottomTabNavigator() {
   const colorScheme = useColorScheme();
@@ -21,6 +23,8 @@ export default function BottomTabNavigator() {
   return (
     <BottomTab.Navigator
       initialRouteName="Accueil"
+      activeColor="#e58711"
+      barStyle={{ backgroundColor: 'white' }}
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
       <BottomTab.Screen
         name="Accueil"
@@ -57,7 +61,7 @@ export default function BottomTabNavigator() {
 // You can explore the built-in icon families and icons on the web at:
 // https://icons.expo.fyi/
 function TabBarIcon(props: { name: React.ComponentProps<typeof Ionicons>['name']; color: string }) {
-  return <Ionicons size={30} style={{ marginBottom: -3 }} {...props} />;
+  return <Ionicons size={24} style={{ marginBottom: -3 }} {...props} />;
 }
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
