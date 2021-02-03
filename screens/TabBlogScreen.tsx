@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import { StyleSheet, TouchableOpacity, Image, Alert, ScrollView, FlatList, Button, ActivityIndicator, RefreshControl} from 'react-native';
+import { StyleSheet, TouchableOpacity, Image, Alert, ScrollView, FlatList, ActivityIndicator, RefreshControl, Dimensions} from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
-import { Text, View, SocialBlogBar, SocialBlogSubBar } from '../components/Themed';
+import { View, SocialBlogBar, SocialBlogSubBar } from '../components/Themed';
 import Constants from 'expo-constants';
+import { Button, Text, theme } from "galio-framework";
 
 import Moment from 'react-moment';
 import 'moment/locale/fr';
 
+const { height, width } = Dimensions.get("screen");
 export default class Blog extends React.Component<any, any> {
 
   constructor(props: any) {
@@ -90,7 +92,9 @@ export default class Blog extends React.Component<any, any> {
                 </SocialBlogBar>
                 <TouchableOpacity style={styles.see_article} onPress={() => { this.props.navigation.navigate('TabBlogDetailsScreen', { title: item.title, thumbnail_url: item.thumbnail_url, content: item.content, posted_at: item.posted_at, comments_count: item.comments_count}); }}>
                 <Image style={styles.icon} source={{ uri: 'https://img.icons8.com/color/48/000000/visible--v1.png' }} />
-                <Button title="Voir l'article" onPress={() => { this.props.navigation.navigate('TabBlogDetailsScreen', { title: item.title, thumbnail_url: item.thumbnail_url, content: item.content, posted_at: item.posted_at, comments_count: item.comments_count }); }}/>
+                  <Button style={styles.button} onPress={() => { this.props.navigation.navigate('TabBlogDetailsScreen', { title: item.title, thumbnail_url: item.thumbnail_url, content: item.content, posted_at: item.posted_at, comments_count: item.comments_count }); }}>
+                  Voir l'article
+                  </Button>
                 </TouchableOpacity>
               </TouchableOpacity>
             )
@@ -109,6 +113,13 @@ const styles = StyleSheet.create({
   list: {
     paddingHorizontal: 17,
     backgroundColor:"#E6E6E6",
+  },
+  button: {
+    width: width - theme.SIZES.BASE * 4,
+    height: theme.SIZES.BASE * 3,
+    shadowRadius: 0,
+    shadowOpacity: 0,
+    backgroundColor: '#e58711',
   },
   separator: {
     marginTop: 10,
