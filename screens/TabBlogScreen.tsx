@@ -91,7 +91,7 @@ export default class Blog extends React.Component<any, any> {
                   </View>
                 </SocialBlogBar>
                 <TouchableOpacity style={styles.see_article} onPress={() => { this.props.navigation.navigate('TabBlogDetailsScreen', { title: item.title, thumbnail_url: item.thumbnail_url, content: item.content, posted_at: item.posted_at, comments_count: item.comments_count}); }}>
-                <Image style={styles.icon} source={{ uri: 'https://img.icons8.com/color/48/000000/visible--v1.png' }} />
+                {/* <Image style={styles.icon} source={{ uri: 'https://img.icons8.com/color/48/000000/visible--v1.png' }} /> */}
                   <Button style={styles.button} onPress={() => { this.props.navigation.navigate('TabBlogDetailsScreen', { title: item.title, thumbnail_url: item.thumbnail_url, content: item.content, posted_at: item.posted_at, comments_count: item.comments_count }); }}>
                   Voir l'article
                   </Button>

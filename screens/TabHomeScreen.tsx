@@ -17,7 +17,7 @@ export default class Home extends React.Component<any, any> {
   render() {
     return (
       <Block flex style={styles.container}>
-        <StatusBar hidden />
+        <StatusBar />
         <Block flex center>
         <ImageBackground
             source={require('../assets/images/bg_home.jpg')} style={{ height, width, zIndex: 1 }}/>
