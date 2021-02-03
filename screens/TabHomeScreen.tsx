@@ -23,7 +23,7 @@ export default class Home extends React.Component<any, any> {
             source={require('../assets/images/bg_home.jpg')} style={{ height, width, zIndex: 1 }}/>
         </Block>
         <Block center>
-          <Image source={require('../assets/images/pdp_anthonimarie_black.png')} style={styles.logo} />
+          <Image source={require('../assets/images/logo_anthonimarie_transparent.png')} style={styles.logo} />
         </Block>
         <Block flex space="between" style={styles.padded}>
             <Block flex space="around" style={{ zIndex: 2 }}>
@@ -86,8 +86,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#272622'
   },
   logo: {
-    width: 100,
-    height: 100,
+    width: 150,
+    height: 150,
+    resizeMode: 'contain',
     zIndex: 2,
     position: 'relative',
     marginTop: '-55%'
