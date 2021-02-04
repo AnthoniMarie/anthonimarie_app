@@ -38,6 +38,9 @@ export default class Home extends React.Component<any, any> {
                   <Text color="white" size={16}>
                     Profitez de mon site web sur mobile (bêta) :)
                   </Text>
+                  <Text color="white" size={16}>
+                    Et surtout, suivez mon blog !
+                  </Text>
                 </Block>
               </Block>
               <Block center>
