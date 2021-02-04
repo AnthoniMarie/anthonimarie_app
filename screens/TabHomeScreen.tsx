@@ -36,7 +36,7 @@ export default class Home extends React.Component<any, any> {
               </Block>
                 <Block style={styles.subTitle}>
                   <Text color="white" size={16}>
-                    Profitez de mon site web sur mobile :)
+                    Profitez de mon site web sur mobile (bêta) :)
                   </Text>
                 </Block>
               </Block>
