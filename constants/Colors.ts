@@ -13,13 +13,13 @@ export default {
     tabIconSelected: tintColorLight,
   },
   dark: {
-    text: 'white',
-    background: '#000',
-    tint: tintColorDark,
+    text: 'black',
+    background: '#fff',
+    tint: tintColorLight,
     button_home: '#e58711',
     social_blog_bar: 'white',
-    social_blog_inbar: 'red',
+    social_blog_inbar: 'white',
     tabIconDefault: '#ccc',
-    tabIconSelected: tintColorDark,
+    tabIconSelected: tintColorLight,
   },
 };

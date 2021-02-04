@@ -43,12 +43,12 @@ export default class Home extends React.Component<any, any> {
               <Block center>
                 <Button
                   style={styles.button}
-                  onPress={() => alert("bisous")}
+                  onPress={() => { this.props.navigation.navigate('TabBlogScreen'); }}
                 >
-                Découvrir
+                Voir mes derniers posts
                 </Button>
-                <Button style={styles.button_second} onPress={() => { this.props.navigation.navigate('TabBlogScreen'); }}>
-                  Voir mes derniers posts
+                <Button style={styles.button_second} onPress={() => { this.props.navigation.navigate('TabContactScreen'); }}>
+                  Me contacter
                 </Button>
               </Block>
           </Block>
