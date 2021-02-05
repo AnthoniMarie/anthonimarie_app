@@ -5,31 +5,52 @@ import * as React from 'react';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
-import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
+import TabHomeScreen from '../screens/TabHomeScreen';
+import TabContactScreen from '../screens/TabContactScreen';
+import TabBlogScreen from '../screens/TabBlogScreen';
+import TabBlogDetailsScreen from '../screens/TabBlogDetailsScreen';
 
-const BottomTab = createBottomTabNavigator<BottomTabParamList>();
+import { BottomTabParamList, TabHomeParamList, TabContactParamList, TabBlogParamList, TabDevisParamList} from '../types';
+import TabDevisScreen from '../screens/TabDevisScreen';
+
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+
+const BottomTab = createMaterialBottomTabNavigator<BottomTabParamList>();
 
 export default function BottomTabNavigator() {
   const colorScheme = useColorScheme();
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
-      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
+      initialRouteName="Accueil"
+      activeColor="#e58711"
+      barStyle={{ backgroundColor: 'white' }}>
       <BottomTab.Screen
-        name="TabOne"
-        component={TabOneNavigator}
+        name="Accueil"
+        component={TabHomeNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-home" color={color} />,
         }}
       />
       <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoNavigator}
+        name="Blog"
+        component={TabBlogNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-newspaper" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="Devis"
+        component={TabDevisNavigator}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-construct-outline" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="Contacter"
+        component={TabContactNavigator}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon name="rocket-sharp" color={color} />,
         }}
       />
     </BottomTab.Navigator>
@@ -39,35 +60,68 @@ export default function BottomTabNavigator() {
 // You can explore the built-in icon families and icons on the web at:
 // https://icons.expo.fyi/
 function TabBarIcon(props: { name: React.ComponentProps<typeof Ionicons>['name']; color: string }) {
-  return <Ionicons size={30} style={{ marginBottom: -3 }} {...props} />;
+  return <Ionicons size={24} style={{ marginBottom: -3 }} {...props} />;
 }
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-const TabOneStack = createStackNavigator<TabOneParamList>();
+const TabHomeStack = createStackNavigator<TabHomeParamList>();
 
-function TabOneNavigator() {
+function TabHomeNavigator() {
   return (
-    <TabOneStack.Navigator>
-      <TabOneStack.Screen
-        name="TabOneScreen"
-        component={TabOneScreen}
-        options={{ headerTitle: 'Tab One Title' }}
+    <TabHomeStack.Navigator>
+      <TabHomeStack.Screen
+        name="TabHomeScreen"
+        component={TabHomeScreen}
+        options={{ headerTitle: 'Bienvenue sur mon App !' }}
       />
-    </TabOneStack.Navigator>
+    </TabHomeStack.Navigator>
+  );
+}
+const TabBlogStack = createStackNavigator<TabBlogParamList>();
+const TabBlogDetailsStack = createStackNavigator<TabBlogParamList>();
+
+function TabBlogNavigator() {
+  return (
+    <TabBlogStack.Navigator>
+      <TabBlogStack.Screen
+        name="TabBlogScreen"
+        component={TabBlogScreen}
+        options={{ headerTitle: 'Le Blog !' }}
+      />
+      <TabBlogDetailsStack.Screen
+        name="TabBlogDetailsScreen"
+        component={TabBlogDetailsScreen}
+        options={{ headerTitle: 'Le Blog ! - Détails', headerBackTitle: "Retour"}}
+      />
+    </TabBlogStack.Navigator>
   );
 }
 
-const TabTwoStack = createStackNavigator<TabTwoParamList>();
+const TabContactStack = createStackNavigator<TabContactParamList>();
 
-function TabTwoNavigator() {
+function TabContactNavigator() {
   return (
-    <TabTwoStack.Navigator>
-      <TabTwoStack.Screen
-        name="TabTwoScreen"
-        component={TabTwoScreen}
-        options={{ headerTitle: 'Tab Two Title' }}
+    <TabContactStack.Navigator>
+      <TabContactStack.Screen
+        name="TabContactScreen"
+        component={TabContactScreen}
+        options={{ headerTitle: 'Restons en contact !' }}
       />
-    </TabTwoStack.Navigator>
+    </TabContactStack.Navigator>
+  );
+}
+
+const TabDevisStack = createStackNavigator<TabDevisParamList>();
+
+function TabDevisNavigator() {
+  return (
+    <TabDevisStack.Navigator>
+      <TabDevisStack.Screen
+        name="TabDevisScreen"
+        component={TabDevisScreen}
+        options={{ headerTitle: 'Réalisons votre devis' }}
+      />
+    </TabDevisStack.Navigator>
   );
 }

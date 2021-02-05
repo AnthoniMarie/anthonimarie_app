@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "anthonimarie_app",
+    "name": "Anthoni Marie - App",
     "slug": "anthonimarie_app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/pdp_anthonimarie_black.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
@@ -28,7 +28,7 @@
       }
     },
     "web": {
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/pdp_anthonimarie_black.png"
     }
   }
 }
