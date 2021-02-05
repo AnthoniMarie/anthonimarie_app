@@ -46,11 +46,11 @@ export default class Home extends React.Component<any, any> {
               <Block center>
                 <Button
                   style={styles.button}
-                  onPress={() => { this.props.navigation.navigate('TabBlogScreen'); }}
+                  onPress={() => { this.props.navigation.navigate('Blog'); }}
                 >
                 Voir mes derniers posts
                 </Button>
-                <Button style={styles.button_second} onPress={() => { this.props.navigation.navigate('TabContactScreen'); }}>
+                <Button style={styles.button_second} onPress={() => { this.props.navigation.navigate('Contacter'); }}>
                   Me contacter
                 </Button>
               </Block>
