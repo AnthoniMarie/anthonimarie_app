@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "125305763562",
+    "firebase_url": "https://anthonimarieapp-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "anthonimarieapp",
+    "storage_bucket": "anthonimarieapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:125305763562:android:c61d8a654b101595cdc993",
+        "android_client_info": {
+          "package_name": "com.anthoni_marie.anthonimarie_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "125305763562-g3a1co3igbpdgjnhrec66q5253b9lv2n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdjPwmmbTt5uZ0X5zgC4n9obB0RLeJDMk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "125305763562-g3a1co3igbpdgjnhrec66q5253b9lv2n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
