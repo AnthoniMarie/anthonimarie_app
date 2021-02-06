@@ -1,9 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, {useState} from 'react';
+import Constants from 'expo-constants';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
+import { Platform } from 'react-native';
 
 import * as Notifications from 'expo-notifications';
 import * as Permissions from 'expo-permissions';
@@ -27,34 +29,64 @@ if (!firebase.apps.length)
 else
   firebase.app();
 
-const registerForPushNotifications = async () => { 
-  try {
-    const permission = await Permissions.askAsync(Permissions.NOTIFICATIONS);
-    if (!permission.granted) return;
-    const token = await Notifications.getExpoPushTokenAsync();
-
-    firebase.auth().signInAnonymously();
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        var uid = user.uid;
-        firebase.database().ref('users/' + user.uid).set({notif_token: token,});
-        console.log(user.uid);
-      }
-    });
+async function registerForPushNotificationsAsync() {
+  let token;
+  if (Constants.isDevice) {
+    const { status: existingStatus } = await Notifications.getPermissionsAsync();
+    let finalStatus = existingStatus;
+    if (existingStatus !== 'granted') {
+      const { status } = await Notifications.requestPermissionsAsync();
+      finalStatus = status;
+    }
+    if (finalStatus !== 'granted') {
+      alert('Failed to get push token for push notification!');
+      return;
+    }
+    token = (await Notifications.getExpoPushTokenAsync()).data;
     console.log(token);
-    } catch (error) {
-    console.log('An error has occured while trying to get our beautiful push token...', error);
+  } else {
+    alert('Must use physical device for Push Notifications');
+  }
+
+  if (Platform.OS === 'android') {
+    Notifications.setNotificationChannelAsync('default', {
+      name: 'default',
+      importance: Notifications.AndroidImportance.MAX,
+      vibrationPattern: [0, 250, 250, 250],
+      lightColor: '#FF231F7C',
+    });
+  }
+
+  return token;
+}
+
+async function firebaseInteractions(expoPushToken) {
+  var uid;
+  firebase.auth().signInAnonymously();
+  try {
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      uid = user.uid;
+      firebase.database().ref('users/' + user.uid).set({notif_token: expoPushToken,});
+      console.log(user.uid);
+    }
+  });
+  console.log(expoPushToken);
+  } catch (error) {
+  console.log('An error has occured while trying to get our beautiful push token...', error);
   }
 }
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();
+  const [expoPushToken, setExpoPushToken] = useState('');
 
   if (!isLoadingComplete) {
     return null;
   } else {
-    registerForPushNotifications();
+    registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
+    firebaseInteractions(expoPushToken);
     return (
       <SafeAreaProvider>
         <Navigation colorScheme={colorScheme} />
