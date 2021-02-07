@@ -43,7 +43,6 @@ async function registerForPushNotificationsAsync() {
       return;
     }
     token = (await Notifications.getExpoPushTokenAsync()).data;
-    console.log(token);
   } else {
     alert('Must use physical device for Push Notifications');
   }
@@ -62,18 +61,17 @@ async function registerForPushNotificationsAsync() {
 
 async function firebaseInteractions(expoPushToken) {
   var uid;
+
   firebase.auth().signInAnonymously();
   try {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       uid = user.uid;
       firebase.database().ref('users/' + user.uid).set({notif_token: expoPushToken,});
-      console.log(user.uid);
     }
   });
-  console.log(expoPushToken);
   } catch (error) {
-  console.log('An error has occured while trying to get our beautiful push token...', error);
+  console.log('An error has occured (get token failed)', error);
   }
 }
 
