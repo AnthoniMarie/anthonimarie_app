@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Constants from 'expo-constants';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import useCachedResources from './hooks/useCachedResources';
@@ -31,6 +31,7 @@ else
 
 async function registerForPushNotificationsAsync() {
   let token;
+
   if (Constants.isDevice) {
     const { status: existingStatus } = await Notifications.getPermissionsAsync();
     let finalStatus = existingStatus;
@@ -55,23 +56,25 @@ async function registerForPushNotificationsAsync() {
       lightColor: '#FF231F7C',
     });
   }
-
+  firebaseInteractions(token);
   return token;
 }
 
-async function firebaseInteractions(expoPushToken) {
+function firebaseInteractions(expoPushToken) {
   var uid;
 
   firebase.auth().signInAnonymously();
   try {
-  firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      uid = user.uid;
-      firebase.database().ref('users/' + user.uid).set({notif_token: expoPushToken,});
-    }
-  });
+      firebase.auth().onAuthStateChanged((user) => {
+          if (user) {
+              uid = user.uid;
+              firebase.database().ref('users/' + user.uid).set({
+                  notif_token: expoPushToken,
+              });
+          }
+      });
   } catch (error) {
-  console.log('An error has occured (get token failed)', error);
+      console.log('An error has occured (get token failed)', error);
   }
 }
 
@@ -80,11 +83,13 @@ export default function App() {
   const colorScheme = useColorScheme();
   const [expoPushToken, setExpoPushToken] = useState('');
 
-  if (!isLoadingComplete) {
-    return null;
-  } else {
+  useEffect(() => {
     registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
-    firebaseInteractions(expoPushToken);
+  }, []);
+
+  if (!isLoadingComplete)
+    return null;
+  else {
     return (
       <SafeAreaProvider>
         <Navigation colorScheme={colorScheme} />
