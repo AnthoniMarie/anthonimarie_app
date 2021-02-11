@@ -85,7 +85,7 @@ export default class Blog extends React.Component<any, any> {
                         <Image style={styles.icon} source={{ uri: 'https://img.icons8.com/color/48/000000/chat--v3.png' }} />
                         <Text style={styles.socialBarLabel}>{item.comments_count + ' '}</Text>
                         <Image style={styles.icon} source={{ uri: 'https://img.icons8.com/color/48/000000/lime.png' }} />
-                        <Text style={styles.socialBarLabel}>?</Text>
+                        <Text style={styles.socialBarLabel}>0</Text>
                       </TouchableOpacity>
                     </SocialBlogSubBar>
                   </View>
