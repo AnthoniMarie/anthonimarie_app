@@ -39,13 +39,13 @@ export default function BottomTabNavigator() {
           tabBarIcon: ({ color }) => <TabBarIcon name="ios-newspaper" color={color} />,
         }}
       />
-      <BottomTab.Screen
+      {/* <BottomTab.Screen
         name="Devis"
         component={TabDevisNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="ios-construct-outline" color={color} />,
         }}
-      />
+      /> */}
       <BottomTab.Screen
         name="Contacter"
         component={TabContactNavigator}

@@ -31,15 +31,12 @@ export default class Home extends React.Component<any, any> {
               <Block style={styles.title}>
                 <Block>
                   <Text color="white" size={60}>
-                    Bienvenue !
+                    Le blog !
                   </Text>
               </Block>
                 <Block style={styles.subTitle}>
                   <Text color="white" size={16}>
-                    Profitez de mon site web sur mobile (bêta) :)
-                  </Text>
-                  <Text color="white" size={16}>
-                    Et surtout, suivez mon blog !
+                    Profitez de mon blog sur mobile :)
                   </Text>
                 </Block>
               </Block>
